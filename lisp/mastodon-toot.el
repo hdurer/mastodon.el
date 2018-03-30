@@ -38,6 +38,7 @@
 (autoload 'mastodon-http--triage "mastodon-http")
 (autoload 'mastodon-tl--as-string "mastodon-tl")
 (autoload 'mastodon-tl--field "mastodon-tl")
+(autoload 'mastodon-tl--find-property-range "mastodon-tl")
 (autoload 'mastodon-tl--goto-next-toot "mastodon-tl")
 (autoload 'mastodon-tl--property "mastodon-tl")
 (autoload 'mastodon-toot "mastodon")

@@ -139,6 +139,7 @@
   "Display NOTIFICATIONS in buffer."
   (interactive)
   (mastodon-tl--init
+   "Notifications"
    "*mastodon-notifications*"
    "notifications"
    'mastodon-notifications--timeline))
