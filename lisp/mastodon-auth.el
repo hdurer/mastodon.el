@@ -70,12 +70,12 @@ if you are happy with unencryped storage use e.g. \"~/authinfo\"."
   "Make POST to generate auth token."
   (mastodon-http--post
    (concat mastodon-instance-url "/oauth/token")
-   `(("client_id" . ,(plist-get (mastodon-client) :client_id))
-     ("client_secret" . ,(plist-get (mastodon-client) :client_secret))
-     ("grant_type" . "password")
-     ("username" . ,(read-string "Email: " user-mail-address))
-     ("password" . ,(read-passwd "Password: "))
-     ("scope" . "read write follow"))
+   `(("client_id" ,(plist-get (mastodon-client) :client_id))
+     ("client_secret" ,(plist-get (mastodon-client) :client_secret))
+     ("grant_type" "password")
+     ("username" ,(read-string "Email: " user-mail-address))
+     ("password" ,(read-passwd "Password: "))
+     ("scope" "read write follow"))
    nil
    :unauthenticated))
 
@@ -95,15 +95,15 @@ Reads and/or stores secres in `MASTODON-AUTH-SOURCE-FILE'."
     (prog1
         (mastodon-http--post
          (concat mastodon-instance-url "/oauth/token")
-         `(("client_id" . ,(plist-get (mastodon-client) :client_id))
-           ("client_secret" . ,(plist-get (mastodon-client) :client_secret))
-           ("grant_type" . "password")
-           ("username" . ,(plist-get credentials-plist :user))
-           ("password" . ,(let ((secret (plist-get credentials-plist :secret)))
-                            (if (functionp secret)
-                                (funcall secret)
-                              secret)))
-           ("scope" . "read write follow"))
+         `(("client_id" ,(plist-get (mastodon-client) :client_id))
+           ("client_secret" ,(plist-get (mastodon-client) :client_secret))
+           ("grant_type" "password")
+           ("username" ,(plist-get credentials-plist :user))
+           ("password" ,(let ((secret (plist-get credentials-plist :secret)))
+                          (if (functionp secret)
+                              (funcall secret)
+                            secret)))
+           ("scope" "read write follow"))
          nil
 	 :unauthenticated)
       (when (functionp (plist-get credentials-plist :save-function))

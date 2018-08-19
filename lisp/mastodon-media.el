@@ -49,6 +49,11 @@
   :group 'mastodon-media
   :type 'integer)
 
+(defcustom mastodon-media--attachment-height 100
+  "Height of the attached images preview."
+  :group 'mastodon-media
+  :type 'integer)
+
 (defvar mastodon-media--generic-avatar-data
   (base64-decode-string
    "iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA
@@ -248,7 +253,7 @@ replacing them with the referenced image."
 (defun mastodon-media--get-avatar-rendering (avatar-url)
   "Returns the string to be written that renders the avatar at AVATAR-URL."
   ;; We use just an empty space as the textual representation.
-  ;; This is what a user will see on a non-graphical display
+  ;; This is what a user will see on a non-graphical displaxoy
   ;; where not showing an avatar at all is preferable.
   (let ((image-options (when (image-type-available-p 'imagemagick)
                          `(:height ,mastodon-media--avatar-height))))
